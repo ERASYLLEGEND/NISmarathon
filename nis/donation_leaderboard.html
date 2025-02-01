@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица лидеров донатов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e1f5e9, #ffffff);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #038d03;
+        }
+
+        .leaderboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        table {
+            width: 80%;
+            max-width: 600px;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #038d03;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        .top-1 { color: gold; font-weight: bold; }
+        .top-2 { color: silver; font-weight: bold; }
+        .top-3 { color: #cd7f32; font-weight: bold; }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        input {
+            width: 200px;
+        }
+
+        button {
+            background: #038d03;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #026502;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Таблица лидеров донатов</h1>
+
+    <div class="input-container">
+        <input type="text" id="name" placeholder="Имя">
+        <input type="number" id="amount" placeholder="Сумма (₸)">
+        <button onclick="addDonation()">Добавить</button>
+    </div>
+
+    <div class="leaderboard-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Имя</th>
+                    <th>Сумма (₸)</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard">
+                <!-- Здесь будут добавляться строки -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let donations = [];
+
+        function addDonation() {
+            const name = document.getElementById('name').value.trim();
+            const amount = parseInt(document.getElementById('amount').value);
+
+            if (!name || isNaN(amount) || amount <= 0) {
+                alert('Введите корректные данные!');
+                return;
+            }
+
+            donations.push({ name, amount });
+            donations.sort((a, b) => b.amount - a.amount);
+
+            updateTable();
+            document.getElementById('name').value = "";
+            document.getElementById('amount').value = "";
+        }
+
+        function updateTable() {
+            const leaderboard = document.getElementById('leaderboard');
+            leaderboard.innerHTML = "";
+
+            donations.forEach((donation, index) => {
+                const row = document.createElement('tr');
+
+                if (index === 0) row.classList.add("top-1");
+                else if (index === 1) row.classList.add("top-2");
+                else if (index === 2) row.classList.add("top-3");
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${donation.name}</td>
+                    <td>${donation.amount.toLocaleString()} ₸</td>
+                `;
+
+                leaderboard.appendChild(row);
+            });
+        }
+    </script>
+
+</body>
+</html>

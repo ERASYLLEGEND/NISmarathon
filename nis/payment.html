@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR-Код для оплаты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e1f5e9, #ffffff);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #038d03;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+
+        .qr-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .qr-container:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        img {
+            width: 200px;
+            height: auto;
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #026502;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Оплатите через QR-Код</h1>
+        <div class="qr-container">
+            <img src="qrcode_kaspi.kz.png" alt="QR-код для оплаты">
+        </div>
+        <p class="info">Отсканируйте QR-код, чтобы совершить оплату.</p>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIS Maraphon</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffffff, #d4edda);
+            color: #000;
+            text-align: center;
+        }
+
+        header {
+            background: #038d03;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .corner-image {
+            width: 75px;
+            height: auto;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .button {
+            background: #ffffff;
+            color: #038d03;
+            border: 2px solid #038d03;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background: #038d03;
+            color: white;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            gap: 50px;
+        }
+
+        .main-image {
+            width: 50%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-left: -50px;
+        }
+
+        .text-container {
+            width: 40%;
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="Марафон" class="corner-image">
+
+        <div>NIS Maraphon</div>
+
+        <div class="header-buttons">
+            <button class="button" onclick="window.open('register.html', '_blank')">Регистрация на марафон</button>
+            <button class="button" onclick="window.open('second.html', '_blank')">Регистрация на сайт</button>
+            <button class="button" onclick="window.open('info.html', '_blank')">Топ донатов и прогресс</button>
+            <button class="button" onclick="window.open('payment.html', '_blank')">Оплата</button>
+
+
+        </div>
+    </header>
+
+    <div class="content">
+        <img src="марафон.jpeg" alt="Марафон" class="main-image">
+
+        <div class="text-container">
+            <p>Лето 2025 года станет особенным для всех жителей Петропавловска и выпускников Назарбаев Интеллектуальной школы.
+                В честь десятилетия НИШ в городе пройдет масштабный благотворительный марафон по бегу, который объединит людей с активной гражданской позицией и добрым сердцем.
+                Цель мероприятия – не только популяризация здорового образа жизни, но и сбор пожертвований на благотворительные проекты.</p>
+        </div>
+    </div>
+
+    <div class="contact-info">
+        <p>Email: help@gmail.com</p>
+        <p>Телефон: +7 7056167741</p>
+    </div>
+
+    <a href="index.html">На главную</a>
+</body>
+</html>

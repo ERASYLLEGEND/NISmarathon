@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация на сайт</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #e1f5e9);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #038d03;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            border-color: #038d03;
+            outline: none;
+        }
+
+        .button {
+            background: #038d03;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background: #026502;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #038d03;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Регистрация</h1>
+
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" placeholder="Введите ваше имя">
+            </div>
+
+            <div class="form-group">
+                <label for="surname">Фамилия</label>
+                <input type="text" id="surname" name="surname" placeholder="Введите вашу фамилию">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Номер телефона</label>
+                <input type="tel" id="phone" name="phone" placeholder="+7 123 456 7890" pattern="^\+7\s\d{3}\s\d{3}\s\d{4}$">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" placeholder="Введите пароль">
+            </div>
+
+            <div class="form-group">
+                <label for="distance">Дистанция марафона</label>
+                <select id="distance" name="distance">
+                    <option value="">Выберите дистанцию</option>
+                    <option value="5 км">5 км</option>
+                    <option value="10 км">10 км</option>
+                    <option value="21 км">21 км (полумарафон)</option>
+                    <option value="42 км">42 км (марафон)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="button">Зарегистрироваться</button>
+        </form>
+
+        <a href="index.html" class="back-link">Вернуться на главную</a>
+    </div>
+
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                surname: document.getElementById('surname').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                password: document.getElementById('password').value.trim(),
+                distance: document.getElementById('distance').value
+            };
+
+            if (!formData.name || !formData.surname || !formData.phone || !formData.password || !formData.distance) {
+                alert('Заполните все поля!');
+                return;
+            }
+
+            try {
+                const response = await fetch('register.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                alert(result.message);
+
+                if (result.success) {
+                    document.getElementById('registration-form').reset();
+                }
+            } catch (error) {
+                alert('Ошибка соединения с сервером.');
+            }
+        });
+    </script>
+</body>
+</html>
